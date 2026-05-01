@@ -29,68 +29,65 @@
   .subtitle { font-size: 14px; color: #888; margin-bottom: 28px; }
 
   /* Tabs */
-  .tabs { display: flex; gap: 0; margin-bottom: 24px; border-radius: 10px; overflow: hidden; border: 1px solid #0f3460; }
+  .tabs { display: flex; margin-bottom: 24px; border-radius: 10px; overflow: hidden; border: 1px solid #0f3460; }
   .tab {
     flex: 1; padding: 10px 16px; text-align: center; cursor: pointer;
     font-size: 13px; font-weight: 600; color: #666;
-    background: #0d1b38; transition: all .15s; border: none;
-    user-select: none;
+    background: #0d1b38; border: none; user-select: none; transition: all .15s;
   }
   .tab:first-child { border-right: 1px solid #0f3460; }
   .tab.active { background: #0f3460; color: #FFD700; }
   .tab:hover:not(.active) { color: #aaa; background: #111d36; }
 
-  /* Profile panels */
   .profile { display: none; }
   .profile.active { display: block; }
+  .profile-desc { font-size: 13px; color: #666; margin-bottom: 20px; font-style: italic; }
 
-  .profile-desc {
-    font-size: 13px; color: #666; margin-bottom: 16px; font-style: italic;
+  /* Install steps */
+  .steps {
+    background: #0d1b38;
+    border: 1px solid #0f3460;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    counter-reset: step;
   }
+  .step {
+    counter-increment: step;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .step:last-child { margin-bottom: 0; }
+  .step::before {
+    content: counter(step);
+    background: #0f3460; color: #FFD700;
+    font-weight: 700; font-size: 12px;
+    min-width: 24px; height: 24px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px; flex-shrink: 0;
+  }
+  .step b { color: #e0e0e0; }
 
-  /* Install section */
-  .install-section { margin-bottom: 20px; }
-  .method-label {
-    font-size: 11px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: .08em; color: #555; margin-bottom: 10px;
-  }
-  .drag-row {
-    background: #0d1b38; border: 2px dashed #0f3460;
-    border-radius: 10px; padding: 16px; text-align: center; margin-bottom: 14px;
-  }
-  .drag-target {
-    display: inline-block;
-    background: linear-gradient(135deg, #FFD700, #FFA500);
-    color: #1a1a2e; font-weight: 700; font-size: 15px;
-    padding: 10px 22px; border-radius: 8px; text-decoration: none;
-    cursor: grab; user-select: none;
-    box-shadow: 0 2px 12px rgba(255,215,0,.3);
-  }
-  .drag-target:active { cursor: grabbing; }
-  .drag-hint { font-size: 12px; color: #555; margin-top: 8px; }
-
-  .divider {
-    display: flex; align-items: center; gap: 12px;
-    color: #444; font-size: 12px; margin-bottom: 14px;
-  }
-  .divider::before, .divider::after { content:''; flex:1; height:1px; background:#0f3460; }
-
-  .copy-row { display: flex; gap: 8px; margin-bottom: 24px; }
+  .copy-row { display: flex; gap: 8px; margin-top: 8px; }
   .url-box {
-    flex: 1; background: #0d1b38; border: 1px solid #0f3460;
+    flex: 1; background: #111d36; border: 1px solid #1a4a8a;
     border-radius: 6px; color: #aac4ff; font-family: monospace;
-    font-size: 11px; padding: 8px 10px; resize: none; height: 48px; outline: none;
+    font-size: 11px; padding: 8px 10px; resize: none; height: 52px; outline: none;
   }
   .copy-btn {
-    background: #0f3460; color: #FFD700; border: none;
-    border-radius: 6px; font-size: 13px; font-weight: 600;
-    padding: 0 14px; cursor: pointer; white-space: nowrap;
+    background: #FFD700; color: #1a1a2e; border: none;
+    border-radius: 6px; font-size: 13px; font-weight: 700;
+    padding: 0 18px; cursor: pointer; white-space: nowrap; flex-shrink: 0;
   }
-  .copy-btn:hover { background: #1a4a8a; }
-  .copy-btn.ok { background: #1a5c2e; color: #6fcf97; }
+  .copy-btn:hover { background: #FFA500; }
+  .copy-btn.ok { background: #6fcf97; color: #1a1a2e; }
 
   /* Keywords */
-  .keywords-section { border-top: 1px solid #0f3460; padding-top: 20px; }
+  .keywords-section { border-top: 1px solid #0f3460; padding-top: 20px; margin-top: 4px; }
   .keywords-section h2 {
     font-size: 11px; font-weight: 700; color: #555;
     text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px;
@@ -102,26 +99,23 @@
 <body>
 <div class="card">
   <h1>TPM Keyword Highlighter</h1>
-  <p class="subtitle">Click a bookmark on any job posting to highlight keywords and see your match score</p>
+  <p class="subtitle">Highlights keywords on any job posting and shows your match score</p>
 
   <div class="tabs">
     <div class="tab active" onclick="switchTab(0)">Generic TPM</div>
     <div class="tab" onclick="switchTab(1)">My Profile (Moshe)</div>
   </div>
 
-  <!-- Profile 0: Generic TPM -->
   <div class="profile active" id="profile-0">
     <p class="profile-desc">Broad TPM keyword set - good for any project management role</p>
-    <div class="install-section">
-      <p class="method-label">Option A - drag to bookmarks bar</p>
-      <div class="drag-row">
-        <a class="drag-target" id="drag-0" href="#" onclick="return false;">Highlight TPM Keywords</a>
-        <p class="drag-hint">Drag this button to your bookmarks bar</p>
-      </div>
-      <div class="divider">or create bookmark manually - copy URL below</div>
+    <div class="steps">
+      <div class="step">Copy the URL below</div>
+      <div class="step">Right-click your bookmarks bar &rarr; <b>Add bookmark / Add page</b></div>
+      <div class="step">Set name: <b>Highlight TPM Keywords</b> &mdash; paste the URL &rarr; Save</div>
+      <div class="step">Go to any job posting and click the bookmark</div>
       <div class="copy-row">
         <textarea class="url-box" id="url-0" readonly spellcheck="false"></textarea>
-        <button class="copy-btn" onclick="copyUrl(0)">Copy URL</button>
+        <button class="copy-btn" id="btn-0" onclick="copyUrl(0)">Copy URL</button>
       </div>
     </div>
     <div class="keywords-section">
@@ -130,19 +124,16 @@
     </div>
   </div>
 
-  <!-- Profile 1: My Profile -->
   <div class="profile" id="profile-1">
     <p class="profile-desc">Tailored to your background: AI/ML pipelines, CI/CD, cloud, simulation, DevOps</p>
-    <div class="install-section">
-      <p class="method-label">Option A - drag to bookmarks bar</p>
-      <div class="drag-row">
-        <a class="drag-target" id="drag-1" href="#" onclick="return false;">Highlight My Keywords</a>
-        <p class="drag-hint">Drag this button to your bookmarks bar</p>
-      </div>
-      <div class="divider">or create bookmark manually - copy URL below</div>
+    <div class="steps">
+      <div class="step">Copy the URL below</div>
+      <div class="step">Right-click your bookmarks bar &rarr; <b>Add bookmark / Add page</b></div>
+      <div class="step">Set name: <b>Highlight My Keywords</b> &mdash; paste the URL &rarr; Save</div>
+      <div class="step">Go to any job posting and click the bookmark</div>
       <div class="copy-row">
         <textarea class="url-box" id="url-1" readonly spellcheck="false"></textarea>
-        <button class="copy-btn" onclick="copyUrl(1)">Copy URL</button>
+        <button class="copy-btn" id="btn-1" onclick="copyUrl(1)">Copy URL</button>
       </div>
     </div>
     <div class="keywords-section">
@@ -155,7 +146,6 @@
 <script>
 const profiles = [
   {
-    label: 'Generic TPM',
     keywords: [
       'system design','Azure DevOps','Scrum Master','product owner','cross-functional',
       'prioritization','coordination','facilitation','negotiation','integration',
@@ -168,7 +158,6 @@ const profiles = [
     ]
   },
   {
-    label: 'My Profile',
     keywords: [
       'generative AI','machine learning','LLM','agentic','AI-assisted',
       'synthetic data','simulation','ML pipeline','data pipeline','autonomous','ADAS',
@@ -185,15 +174,12 @@ const profiles = [
 
 function buildBookmarklet(kw) {
   const sorted = JSON.stringify([...kw].sort((a, b) => b.length - a.length));
-  const src = `(function(){var C='__kw_hl__';if(document.querySelector('.'+C)){document.querySelectorAll('.'+C).forEach(function(e){e.replaceWith(document.createTextNode(e.textContent));});var b=document.getElementById('__kw_badge__');if(b)b.remove();return;}var kw=${sorted};var sorted=kw.slice().sort(function(a,b){return b.length-a.length;});var re=new RegExp('('+sorted.map(function(k){return k.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\\\$&');}).join('|')+')','gi');var n=0;var foundSet={};function walk(node){if(node.nodeType===3){var t=node.nodeValue;if(!re.test(t))return;re.lastIndex=0;var f=document.createDocumentFragment(),last=0,m;while((m=re.exec(t))!==null){if(m.index>last)f.appendChild(document.createTextNode(t.slice(last,m.index)));var s=document.createElement('span');s.className=C;s.style.cssText='background:#FFD700;color:#000;border-radius:2px;padding:0 2px;font-weight:600;';s.textContent=m[0];f.appendChild(s);n++;foundSet[m[0].toLowerCase()]=m[0];last=m.index+m[0].length;}if(last<t.length)f.appendChild(document.createTextNode(t.slice(last)));node.parentNode.replaceChild(f,node);}else if(node.nodeType===1&&!/^(SCRIPT|STYLE|TEXTAREA|INPUT|NOSCRIPT)$/.test(node.tagName)){Array.from(node.childNodes).forEach(walk);}}walk(document.body);var foundList=Object.keys(foundSet).map(function(k){return foundSet[k];});var missingList=kw.filter(function(k){return !foundSet[k.toLowerCase()];});var pct=Math.round(foundList.length/kw.length*100);var panel=document.createElement('div');panel.id='__kw_badge__';panel.style.cssText='position:fixed;top:12px;right:12px;z-index:2147483647;background:#1a1a2e;color:#e0e0e0;font:13px/1.4 -apple-system,sans-serif;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.6);border:1px solid #FFD700;min-width:220px;overflow:hidden;';var header=document.createElement('div');header.style.cssText='display:flex;align-items:center;justify-content:space-between;padding:10px 14px;cursor:pointer;background:#0f1e3d;gap:8px;';header.innerHTML='<span style="color:#FFD700;font-weight:700;font-size:15px;">'+pct+'%</span><span style="color:#aaa;font-size:12px;">'+foundList.length+'/'+kw.length+' found</span><span id="__kw_tog__" style="color:#FFD700;font-size:18px;line-height:1;">+</span>';var body=document.createElement('div');body.style.cssText='display:none;padding:10px 14px;max-height:300px;overflow-y:auto;';if(foundList.length){var fd=document.createElement('div');fd.innerHTML='<div style="font-size:11px;font-weight:700;color:#6fcf97;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;">Found</div>';var ft=document.createElement('div');ft.style.cssText='display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;';foundList.slice().sort().forEach(function(k){var s=document.createElement('span');s.style.cssText='background:#1a5c2e;color:#6fcf97;font-size:11px;padding:2px 7px;border-radius:10px;';s.textContent=k;ft.appendChild(s);});fd.appendChild(ft);body.appendChild(fd);}if(missingList.length){var md=document.createElement('div');md.innerHTML='<div style="font-size:11px;font-weight:700;color:#eb5757;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;">Not found</div>';var mt=document.createElement('div');mt.style.cssText='display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;';missingList.slice().sort().forEach(function(k){var s=document.createElement('span');s.style.cssText='background:#3d1a1a;color:#eb5757;font-size:11px;padding:2px 7px;border-radius:10px;';s.textContent=k;mt.appendChild(s);});md.appendChild(mt);body.appendChild(md);}var btns=document.createElement('div');btns.style.cssText='display:flex;gap:6px;padding-top:4px;';var cb=document.createElement('button');cb.textContent='Copy found';cb.style.cssText='flex:1;background:#0f3460;color:#FFD700;border:none;border-radius:6px;padding:6px 8px;font-size:12px;font-weight:600;cursor:pointer;';cb.onclick=function(){navigator.clipboard.writeText(foundList.slice().sort().join(', ')).then(function(){cb.textContent='Copied!';setTimeout(function(){cb.textContent='Copy found';},1500);});};var xb=document.createElement('button');xb.textContent='Clear';xb.style.cssText='background:#1a0f0f;color:#eb5757;border:none;border-radius:6px;padding:6px 8px;font-size:12px;font-weight:600;cursor:pointer;';xb.onclick=function(){document.querySelectorAll('.'+C).forEach(function(e){e.replaceWith(document.createTextNode(e.textContent));});panel.remove();};btns.appendChild(cb);btns.appendChild(xb);body.appendChild(btns);header.onclick=function(){var open=body.style.display==='block';body.style.display=open?'none':'block';document.getElementById('__kw_tog__').textContent=open?'+':'-';};panel.appendChild(header);panel.appendChild(body);document.body.appendChild(panel);})();`;
+  const src = `(function(){var C='__kw_hl__';if(document.querySelector('.'+C)){document.querySelectorAll('.'+C).forEach(function(e){e.replaceWith(document.createTextNode(e.textContent));});var b=document.getElementById('__kw_badge__');if(b)b.remove();return;}var kw=${sorted};var sorted=kw.slice().sort(function(a,b){return b.length-a.length;});var re=new RegExp('('+sorted.map(function(k){return k.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\\\$&');}).join('|')+')','gi');var n=0;var foundSet={};function walk(node){if(node.nodeType===3){var t=node.nodeValue;if(!re.test(t))return;re.lastIndex=0;var f=document.createDocumentFragment(),last=0,m;while((m=re.exec(t))!==null){if(m.index>last)f.appendChild(document.createTextNode(t.slice(last,m.index)));var s=document.createElement('span');s.className=C;s.style.cssText='background:#FFD700;color:#000;border-radius:2px;padding:0 2px;font-weight:600;';s.textContent=m[0];f.appendChild(s);n++;foundSet[m[0].toLowerCase()]=m[0];last=m.index+m[0].length;}if(last<t.length)f.appendChild(document.createTextNode(t.slice(last)));node.parentNode.replaceChild(f,node);}else if(node.nodeType===1&&!/^(SCRIPT|STYLE|TEXTAREA|INPUT|NOSCRIPT)$/.test(node.tagName)){Array.from(node.childNodes).forEach(walk);}}walk(document.body);var foundList=Object.keys(foundSet).map(function(k){return foundSet[k];});var missingList=kw.filter(function(k){return !foundSet[k.toLowerCase()];});var pct=Math.round(foundList.length/kw.length*100);var panel=document.createElement('div');panel.id='__kw_badge__';panel.style.cssText='position:fixed;top:12px;right:12px;z-index:2147483647;background:#1a1a2e;color:#e0e0e0;font:13px/1.4 -apple-system,sans-serif;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.6);border:1px solid #FFD700;min-width:220px;overflow:hidden;';var header=document.createElement('div');header.style.cssText='display:flex;align-items:center;justify-content:space-between;padding:10px 14px;cursor:pointer;background:#0f1e3d;gap:8px;';header.innerHTML='<span style="color:#FFD700;font-weight:700;font-size:15px;">'+pct+'%<\\/span><span style="color:#aaa;font-size:12px;">'+foundList.length+'\\/'+kw.length+' found<\\/span><span id="__kw_tog__" style="color:#FFD700;font-size:18px;line-height:1;">+<\\/span>';var body=document.createElement('div');body.style.cssText='display:none;padding:10px 14px;max-height:300px;overflow-y:auto;';if(foundList.length){var fd=document.createElement('div');fd.innerHTML='<div style="font-size:11px;font-weight:700;color:#6fcf97;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;">Found<\\/div>';var ft=document.createElement('div');ft.style.cssText='display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;';foundList.slice().sort().forEach(function(k){var s=document.createElement('span');s.style.cssText='background:#1a5c2e;color:#6fcf97;font-size:11px;padding:2px 7px;border-radius:10px;';s.textContent=k;ft.appendChild(s);});fd.appendChild(ft);body.appendChild(fd);}if(missingList.length){var md=document.createElement('div');md.innerHTML='<div style="font-size:11px;font-weight:700;color:#eb5757;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;">Not found<\\/div>';var mt=document.createElement('div');mt.style.cssText='display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;';missingList.slice().sort().forEach(function(k){var s=document.createElement('span');s.style.cssText='background:#3d1a1a;color:#eb5757;font-size:11px;padding:2px 7px;border-radius:10px;';s.textContent=k;mt.appendChild(s);});md.appendChild(mt);body.appendChild(md);}var btns=document.createElement('div');btns.style.cssText='display:flex;gap:6px;padding-top:4px;';var cb=document.createElement('button');cb.textContent='Copy found';cb.style.cssText='flex:1;background:#0f3460;color:#FFD700;border:none;border-radius:6px;padding:6px 8px;font-size:12px;font-weight:600;cursor:pointer;';cb.onclick=function(){navigator.clipboard.writeText(foundList.slice().sort().join(', ')).then(function(){cb.textContent='Copied!';setTimeout(function(){cb.textContent='Copy found';},1500);});};var xb=document.createElement('button');xb.textContent='Clear';xb.style.cssText='background:#1a0f0f;color:#eb5757;border:none;border-radius:6px;padding:6px 8px;font-size:12px;font-weight:600;cursor:pointer;';xb.onclick=function(){document.querySelectorAll('.'+C).forEach(function(e){e.replaceWith(document.createTextNode(e.textContent));});panel.remove();};btns.appendChild(cb);btns.appendChild(xb);body.appendChild(btns);header.onclick=function(){var open=body.style.display==='block';body.style.display=open?'none':'block';document.getElementById('__kw_tog__').textContent=open?'+':'-';};panel.appendChild(header);panel.appendChild(body);document.body.appendChild(panel);})();`;
   return 'javascript:' + encodeURIComponent(src);
 }
 
-// Init both profiles
 profiles.forEach((p, i) => {
-  const url = buildBookmarklet(p.keywords);
-  document.getElementById('drag-' + i).href = url;
-  document.getElementById('url-' + i).value = url;
+  document.getElementById('url-' + i).value = buildBookmarklet(p.keywords);
   const tagList = document.getElementById('tags-' + i);
   p.keywords.forEach(k => {
     const tag = document.createElement('span');
@@ -212,7 +198,7 @@ function copyUrl(idx) {
   const box = document.getElementById('url-' + idx);
   box.select();
   document.execCommand('copy');
-  const btn = box.parentElement.querySelector('.copy-btn');
+  const btn = document.getElementById('btn-' + idx);
   btn.textContent = 'Copied!';
   btn.classList.add('ok');
   setTimeout(() => { btn.textContent = 'Copy URL'; btn.classList.remove('ok'); }, 2000);
