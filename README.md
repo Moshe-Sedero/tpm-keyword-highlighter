@@ -12,7 +12,9 @@ A browser bookmarklet that highlights Technical Project Manager keywords on any 
 1. Browse to any job posting (LinkedIn, Greenhouse, Lever, etc.)
 2. Click the **Highlight TPM Keywords** bookmark
 3. Keywords light up in yellow instantly
-4. Click the badge (top-right) or the bookmark again to clear
+4. A panel appears top-right showing your **match score (%)**, keywords found vs not found
+5. Click **Copy found** to copy matched keywords to clipboard (handy for tailoring your CV)
+6. Click **Clear** or the bookmark again to remove highlights
 
 ## Keywords covered
 
