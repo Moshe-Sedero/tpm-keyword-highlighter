@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TPM Keyword Highlighter</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #1a1a2e;
+    color: #e0e0e0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .card {
+    background: #16213e;
+    border: 1px solid #0f3460;
+    border-radius: 16px;
+    padding: 40px 48px;
+    max-width: 580px;
+    width: 100%;
+    box-shadow: 0 8px 32px rgba(0,0,0,.4);
+  }
+  h1 { font-size: 22px; font-weight: 700; color: #FFD700; margin-bottom: 6px; }
+  .subtitle { font-size: 14px; color: #888; margin-bottom: 28px; }
+
+  /* --- Method A: drag --- */
+  .method { margin-bottom: 24px; }
+  .method-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  .drag-row {
+    background: #0d1b38;
+    border: 2px dashed #0f3460;
+    border-radius: 10px;
+    padding: 18px;
+    text-align: center;
+  }
+  .drag-target {
+    display: inline-block;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #1a1a2e;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 10px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: grab;
+    user-select: none;
+    box-shadow: 0 2px 12px rgba(255,215,0,.3);
+  }
+  .drag-target:active { cursor: grabbing; }
+  .drag-hint { font-size: 12px; color: #555; margin-top: 8px; }
+
+  /* --- Method B: manual --- */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0;
+    color: #444;
+    font-size: 13px;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #0f3460;
+  }
+
+  .manual-steps { font-size: 14px; color: #aaa; margin-bottom: 12px; line-height: 1.7; }
+  .manual-steps b { color: #e0e0e0; }
+
+  .copy-row { display: flex; gap: 8px; }
+  .url-box {
+    flex: 1;
+    background: #0d1b38;
+    border: 1px solid #0f3460;
+    border-radius: 6px;
+    color: #aac4ff;
+    font-family: monospace;
+    font-size: 11px;
+    padding: 8px 10px;
+    resize: none;
+    height: 52px;
+    outline: none;
+  }
+  .copy-btn {
+    background: #0f3460;
+    color: #FFD700;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 0 16px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background .15s;
+  }
+  .copy-btn:hover { background: #1a4a8a; }
+  .copy-btn.ok { background: #1a5c2e; color: #6fcf97; }
+
+  /* --- keywords --- */
+  .keywords-section { border-top: 1px solid #0f3460; padding-top: 22px; margin-top: 24px; }
+  .keywords-section h2 {
+    font-size: 11px; font-weight: 700; color: #555;
+    text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px;
+  }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    background: #0f3460; color: #aac4ff;
+    font-size: 12px; padding: 3px 9px; border-radius: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>TPM Keyword Highlighter</h1>
+  <p class="subtitle">Highlights Technical Project Manager keywords on any job posting - one click</p>
+
+  <!-- Method A -->
+  <div class="method">
+    <p class="method-label">Option A - drag to install</p>
+    <div class="drag-row">
+      <a class="drag-target" href="javascript:(function()%7Bvar%20C%3D'__kw_hl__'%3Bif(document.querySelector('.'%2BC))%7Bdocument.querySelectorAll('.'%2BC).forEach(function(e)%7Be.replaceWith(document.createTextNode(e.textContent))%3B%7D)%3Bvar%20b%3Ddocument.getElementById('__kw_badge__')%3Bif(b)b.remove()%3Breturn%3B%7Dvar%20kw%3D%5B'system%20design'%2C'Azure%20DevOps'%2C'Scrum%20Master'%2C'product%20owner'%2C'cross-functional'%2C'prioritization'%2C'coordination'%2C'facilitation'%2C'negotiation'%2C'integration'%2C'escalation'%2C'infrastructure'%2C'architecture'%2C'collaboration'%2C'Confluence'%2C'dependency'%2C'alignment'%2C'deliverable'%2C'milestone'%2C'technical'%2C'leadership'%2C'communication'%2C'engineering'%2C'mentoring'%2C'coaching'%2C'planning'%2C'strategy'%2C'timeline'%2C'backlog'%2C'release'%2C'velocity'%2C'platform'%2C'roadmap'%2C'budget'%2C'sprint'%2C'scope'%2C'cloud'%2C'risk'%2C'vision'%2C'PRINCE2'%2C'kanban'%2C'Asana'%2C'Trello'%2C'GitHub'%2C'JIRA'%2C'agile'%2C'scrum'%2C'SAFe'%2C'lean'%2C'OKR'%2C'ROI'%2C'KPI'%2C'PMP'%2C'PMI'%2C'CSM'%2C'API'%5D%3Bvar%20re%3Dnew%20RegExp('('%2Bkw.map(function(k)%7Breturn%20k.replace(%2F%5B.*%2B%3F%5E%24%7B%7D()%7C%5B%5C%5D%5C%5C%5D%2Fg%2C'%5C%5C%24%26')%3B%7D).join('%7C')%2B')'%2C'gi')%3Bvar%20n%3D0%3Bfunction%20walk(node)%7Bif(node.nodeType%3D%3D%3D3)%7Bvar%20t%3Dnode.nodeValue%3Bif(!re.test(t))return%3Bre.lastIndex%3D0%3Bvar%20f%3Ddocument.createDocumentFragment()%2Clast%3D0%2Cm%3Bwhile((m%3Dre.exec(t))!%3D%3Dnull)%7Bif(m.index%3Elast)f.appendChild(document.createTextNode(t.slice(last%2Cm.index)))%3Bvar%20s%3Ddocument.createElement('span')%3Bs.className%3DC%3Bs.style.cssText%3D'background%3A%23FFD700%3Bcolor%3A%23000%3Bborder-radius%3A2px%3Bpadding%3A0%202px%3Bfont-weight%3A600%3B'%3Bs.textContent%3Dm%5B0%5D%3Bf.appendChild(s)%3Bn%2B%2B%3Blast%3Dm.index%2Bm%5B0%5D.length%3B%7Dif(last%3Ct.length)f.appendChild(document.createTextNode(t.slice(last)))%3Bnode.parentNode.replaceChild(f%2Cnode)%3B%7Delse%20if(node.nodeType%3D%3D%3D1%26%26!%2F%5E(SCRIPT%7CSTYLE%7CTEXTAREA%7CINPUT%7CNOSCRIPT)%24%2F.test(node.tagName))%7BArray.from(node.childNodes).forEach(walk)%3B%7D%7Dwalk(document.body)%3Bvar%20badge%3Ddocument.createElement('div')%3Bbadge.id%3D'__kw_badge__'%3Bbadge.style.cssText%3D'position%3Afixed%3Btop%3A12px%3Bright%3A12px%3Bz-index%3A2147483647%3Bbackground%3A%231a1a2e%3Bcolor%3A%23FFD700%3Bfont%3Abold%2013px%2F1%20-apple-system%2Csans-serif%3Bpadding%3A8px%2014px%3Bborder-radius%3A20px%3Bbox-shadow%3A0%202px%2012px%20rgba(0%2C0%2C0%2C.5)%3Bcursor%3Apointer%3Bborder%3A1px%20solid%20%23FFD700%3B'%3Bbadge.textContent%3Dn%2B'%20keyword'%2B(n!%3D%3D1%3F's'%3A'')%2B'%20found%20-%20click%20to%20clear'%3Bbadge.onclick%3Dfunction()%7Bdocument.querySelectorAll('.'%2BC).forEach(function(e)%7Be.replaceWith(document.createTextNode(e.textContent))%3B%7D)%3Bbadge.remove()%3B%7D%3Bdocument.body.appendChild(badge)%3B%7D)()%3B" onclick="return false;">Highlight TPM Keywords</a>
+      <p class="drag-hint">Drag this button up to your bookmarks bar</p>
+    </div>
+  </div>
+
+  <div class="divider">or</div>
+
+  <!-- Method B -->
+  <div class="method">
+    <p class="method-label">Option B - create bookmark manually</p>
+    <p class="manual-steps">
+      Right-click your bookmarks bar &rarr; <b>Add page / Add bookmark</b><br>
+      Set name: <b>Highlight TPM Keywords</b><br>
+      Set URL: copy from below and paste it
+    </p>
+    <div class="copy-row">
+      <textarea id="urlBox" class="url-box" readonly spellcheck="false"></textarea>
+      <button class="copy-btn" id="copyBtn" onclick="copyUrl()">Copy URL</button>
+    </div>
+  </div>
+
+  <div class="keywords-section">
+    <h2>Keywords it highlights</h2>
+    <div class="tag-list" id="tagList"></div>
+  </div>
+</div>
+
+<script>
+const keywords = [
+  'system design','Azure DevOps','Scrum Master','product owner','cross-functional',
+  'prioritization','coordination','facilitation','negotiation','integration',
+  'escalation','infrastructure','architecture','collaboration','Confluence',
+  'dependency','alignment','deliverable','milestone','technical','leadership',
+  'communication','engineering','mentoring','coaching','planning','strategy',
+  'timeline','backlog','release','velocity','platform','roadmap','budget',
+  'sprint','scope','cloud','risk','vision','PRINCE2','kanban','Asana','Trello',
+  'GitHub','JIRA','agile','scrum','SAFe','lean','OKR','ROI','KPI','PMP','PMI','CSM','API'
+];
+
+// Populate tag list
+const tagList = document.getElementById('tagList');
+keywords.forEach(k => {
+  const tag = document.createElement('span');
+  tag.className = 'tag';
+  tag.textContent = k;
+  tagList.appendChild(tag);
+});
+
+// Populate URL box with the bookmarklet href from the drag link
+const bookmarkletUrl = document.querySelector('.drag-target').getAttribute('href');
+document.getElementById('urlBox').value = bookmarkletUrl;
+
+function copyUrl() {
+  const box = document.getElementById('urlBox');
+  box.select();
+  document.execCommand('copy');
+  const btn = document.getElementById('copyBtn');
+  btn.textContent = 'Copied!';
+  btn.classList.add('ok');
+  setTimeout(() => { btn.textContent = 'Copy URL'; btn.classList.remove('ok'); }, 2000);
+}
+</script>
+</body>
+</html>
