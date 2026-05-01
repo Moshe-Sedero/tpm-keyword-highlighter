@@ -20,174 +20,199 @@
     background: #16213e;
     border: 1px solid #0f3460;
     border-radius: 16px;
-    padding: 40px 48px;
-    max-width: 580px;
+    padding: 36px 44px;
+    max-width: 620px;
     width: 100%;
     box-shadow: 0 8px 32px rgba(0,0,0,.4);
   }
   h1 { font-size: 22px; font-weight: 700; color: #FFD700; margin-bottom: 6px; }
   .subtitle { font-size: 14px; color: #888; margin-bottom: 28px; }
 
-  /* --- Method A: drag --- */
-  .method { margin-bottom: 24px; }
+  /* Tabs */
+  .tabs { display: flex; gap: 0; margin-bottom: 24px; border-radius: 10px; overflow: hidden; border: 1px solid #0f3460; }
+  .tab {
+    flex: 1; padding: 10px 16px; text-align: center; cursor: pointer;
+    font-size: 13px; font-weight: 600; color: #666;
+    background: #0d1b38; transition: all .15s; border: none;
+    user-select: none;
+  }
+  .tab:first-child { border-right: 1px solid #0f3460; }
+  .tab.active { background: #0f3460; color: #FFD700; }
+  .tab:hover:not(.active) { color: #aaa; background: #111d36; }
+
+  /* Profile panels */
+  .profile { display: none; }
+  .profile.active { display: block; }
+
+  .profile-desc {
+    font-size: 13px; color: #666; margin-bottom: 16px; font-style: italic;
+  }
+
+  /* Install section */
+  .install-section { margin-bottom: 20px; }
   .method-label {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    color: #555;
-    margin-bottom: 10px;
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .08em; color: #555; margin-bottom: 10px;
   }
   .drag-row {
-    background: #0d1b38;
-    border: 2px dashed #0f3460;
-    border-radius: 10px;
-    padding: 18px;
-    text-align: center;
+    background: #0d1b38; border: 2px dashed #0f3460;
+    border-radius: 10px; padding: 16px; text-align: center; margin-bottom: 14px;
   }
   .drag-target {
     display: inline-block;
     background: linear-gradient(135deg, #FFD700, #FFA500);
-    color: #1a1a2e;
-    font-weight: 700;
-    font-size: 15px;
-    padding: 10px 22px;
-    border-radius: 8px;
-    text-decoration: none;
-    cursor: grab;
-    user-select: none;
+    color: #1a1a2e; font-weight: 700; font-size: 15px;
+    padding: 10px 22px; border-radius: 8px; text-decoration: none;
+    cursor: grab; user-select: none;
     box-shadow: 0 2px 12px rgba(255,215,0,.3);
   }
   .drag-target:active { cursor: grabbing; }
   .drag-hint { font-size: 12px; color: #555; margin-top: 8px; }
 
-  /* --- Method B: manual --- */
   .divider {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 20px 0;
-    color: #444;
-    font-size: 13px;
+    display: flex; align-items: center; gap: 12px;
+    color: #444; font-size: 12px; margin-bottom: 14px;
   }
-  .divider::before, .divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: #0f3460;
-  }
+  .divider::before, .divider::after { content:''; flex:1; height:1px; background:#0f3460; }
 
-  .manual-steps { font-size: 14px; color: #aaa; margin-bottom: 12px; line-height: 1.7; }
-  .manual-steps b { color: #e0e0e0; }
-
-  .copy-row { display: flex; gap: 8px; }
+  .copy-row { display: flex; gap: 8px; margin-bottom: 24px; }
   .url-box {
-    flex: 1;
-    background: #0d1b38;
-    border: 1px solid #0f3460;
-    border-radius: 6px;
-    color: #aac4ff;
-    font-family: monospace;
-    font-size: 11px;
-    padding: 8px 10px;
-    resize: none;
-    height: 52px;
-    outline: none;
+    flex: 1; background: #0d1b38; border: 1px solid #0f3460;
+    border-radius: 6px; color: #aac4ff; font-family: monospace;
+    font-size: 11px; padding: 8px 10px; resize: none; height: 48px; outline: none;
   }
   .copy-btn {
-    background: #0f3460;
-    color: #FFD700;
-    border: none;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 0 16px;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background .15s;
+    background: #0f3460; color: #FFD700; border: none;
+    border-radius: 6px; font-size: 13px; font-weight: 600;
+    padding: 0 14px; cursor: pointer; white-space: nowrap;
   }
   .copy-btn:hover { background: #1a4a8a; }
   .copy-btn.ok { background: #1a5c2e; color: #6fcf97; }
 
-  /* --- keywords --- */
-  .keywords-section { border-top: 1px solid #0f3460; padding-top: 22px; margin-top: 24px; }
+  /* Keywords */
+  .keywords-section { border-top: 1px solid #0f3460; padding-top: 20px; }
   .keywords-section h2 {
     font-size: 11px; font-weight: 700; color: #555;
     text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px;
   }
   .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag {
-    background: #0f3460; color: #aac4ff;
-    font-size: 12px; padding: 3px 9px; border-radius: 20px;
-  }
+  .tag { background: #0f3460; color: #aac4ff; font-size: 12px; padding: 3px 9px; border-radius: 20px; }
 </style>
 </head>
 <body>
 <div class="card">
   <h1>TPM Keyword Highlighter</h1>
-  <p class="subtitle">Highlights Technical Project Manager keywords on any job posting - one click</p>
+  <p class="subtitle">Click a bookmark on any job posting to highlight keywords and see your match score</p>
 
-  <!-- Method A -->
-  <div class="method">
-    <p class="method-label">Option A - drag to install</p>
-    <div class="drag-row">
-      <a class="drag-target" href="javascript:(function()%7Bvar%20C%3D'__kw_hl__'%3Bif(document.querySelector('.'%2BC))%7Bdocument.querySelectorAll('.'%2BC).forEach(function(e)%7Be.replaceWith(document.createTextNode(e.textContent))%3B%7D)%3Bvar%20b%3Ddocument.getElementById('__kw_badge__')%3Bif(b)b.remove()%3Breturn%3B%7Dvar%20kw%3D%5B'system%20design'%2C'Azure%20DevOps'%2C'Scrum%20Master'%2C'product%20owner'%2C'cross-functional'%2C'prioritization'%2C'coordination'%2C'facilitation'%2C'negotiation'%2C'integration'%2C'escalation'%2C'infrastructure'%2C'architecture'%2C'collaboration'%2C'Confluence'%2C'dependency'%2C'alignment'%2C'deliverable'%2C'milestone'%2C'technical'%2C'leadership'%2C'communication'%2C'engineering'%2C'mentoring'%2C'coaching'%2C'planning'%2C'strategy'%2C'timeline'%2C'backlog'%2C'release'%2C'velocity'%2C'platform'%2C'roadmap'%2C'budget'%2C'sprint'%2C'scope'%2C'cloud'%2C'risk'%2C'vision'%2C'PRINCE2'%2C'kanban'%2C'Asana'%2C'Trello'%2C'GitHub'%2C'JIRA'%2C'agile'%2C'scrum'%2C'SAFe'%2C'lean'%2C'OKR'%2C'ROI'%2C'KPI'%2C'PMP'%2C'PMI'%2C'CSM'%2C'API'%5D%3Bvar%20sorted%3Dkw.slice().sort(function(a%2Cb)%7Breturn%20b.length-a.length%3B%7D)%3Bvar%20re%3Dnew%20RegExp('('%2Bsorted.map(function(k)%7Breturn%20k.replace(%2F%5B.*%2B%3F%5E%24%7B%7D()%7C%5B%5C%5D%5C%5C%5D%2Fg%2C'%5C%5C%24%26')%3B%7D).join('%7C')%2B')'%2C'gi')%3Bvar%20n%3D0%3Bvar%20foundSet%3D%7B%7D%3Bfunction%20walk(node)%7Bif(node.nodeType%3D%3D%3D3)%7Bvar%20t%3Dnode.nodeValue%3Bif(!re.test(t))return%3Bre.lastIndex%3D0%3Bvar%20f%3Ddocument.createDocumentFragment()%2Clast%3D0%2Cm%3Bwhile((m%3Dre.exec(t))!%3D%3Dnull)%7Bif(m.index%3Elast)f.appendChild(document.createTextNode(t.slice(last%2Cm.index)))%3Bvar%20s%3Ddocument.createElement('span')%3Bs.className%3DC%3Bs.style.cssText%3D'background%3A%23FFD700%3Bcolor%3A%23000%3Bborder-radius%3A2px%3Bpadding%3A0%202px%3Bfont-weight%3A600%3B'%3Bs.textContent%3Dm%5B0%5D%3Bf.appendChild(s)%3Bn%2B%2B%3BfoundSet%5Bm%5B0%5D.toLowerCase()%5D%3Dm%5B0%5D%3Blast%3Dm.index%2Bm%5B0%5D.length%3B%7Dif(last%3Ct.length)f.appendChild(document.createTextNode(t.slice(last)))%3Bnode.parentNode.replaceChild(f%2Cnode)%3B%7Delse%20if(node.nodeType%3D%3D%3D1%26%26!%2F%5E(SCRIPT%7CSTYLE%7CTEXTAREA%7CINPUT%7CNOSCRIPT)%24%2F.test(node.tagName))%7BArray.from(node.childNodes).forEach(walk)%3B%7D%7Dwalk(document.body)%3Bvar%20foundList%3DObject.keys(foundSet).map(function(k)%7Breturn%20foundSet%5Bk%5D%3B%7D)%3Bvar%20missingList%3Dkw.filter(function(k)%7Breturn%20!foundSet%5Bk.toLowerCase()%5D%3B%7D)%3Bvar%20pct%3DMath.round(foundList.length%2Fkw.length*100)%3Bvar%20panel%3Ddocument.createElement('div')%3Bpanel.id%3D'__kw_badge__'%3Bpanel.style.cssText%3D'position%3Afixed%3Btop%3A12px%3Bright%3A12px%3Bz-index%3A2147483647%3Bbackground%3A%231a1a2e%3Bcolor%3A%23e0e0e0%3Bfont%3A13px%2F1.4%20-apple-system%2Csans-serif%3Bborder-radius%3A12px%3Bbox-shadow%3A0%204px%2020px%20rgba(0%2C0%2C0%2C.6)%3Bborder%3A1px%20solid%20%23FFD700%3Bmin-width%3A220px%3Boverflow%3Ahidden%3B'%3Bvar%20header%3Ddocument.createElement('div')%3Bheader.style.cssText%3D'display%3Aflex%3Balign-items%3Acenter%3Bjustify-content%3Aspace-between%3Bpadding%3A10px%2014px%3Bcursor%3Apointer%3Bbackground%3A%230f1e3d%3Bgap%3A8px%3B'%3Bheader.innerHTML%3D'%3Cspan%20style%3D%22color%3A%23FFD700%3Bfont-weight%3A700%3Bfont-size%3A15px%3B%22%3E'%2Bpct%2B'%25%3C%2Fspan%3E%3Cspan%20style%3D%22color%3A%23aaa%3Bfont-size%3A12px%3B%22%3E'%2BfoundList.length%2B'%2F'%2Bkw.length%2B'%20keywords%20found%3C%2Fspan%3E%3Cspan%20id%3D%22__kw_tog__%22%20style%3D%22color%3A%23FFD700%3Bfont-size%3A18px%3Bline-height%3A1%3B%22%3E%2B%3C%2Fspan%3E'%3Bvar%20body%3Ddocument.createElement('div')%3Bbody.style.cssText%3D'display%3Anone%3Bpadding%3A10px%2014px%3Bmax-height%3A300px%3Boverflow-y%3Aauto%3B'%3Bif(foundList.length)%7Bvar%20fd%3Ddocument.createElement('div')%3Bfd.innerHTML%3D'%3Cdiv%20style%3D%22font-size%3A11px%3Bfont-weight%3A700%3Bcolor%3A%236fcf97%3Btext-transform%3Auppercase%3Bletter-spacing%3A.06em%3Bmargin-bottom%3A5px%3B%22%3EFound%3C%2Fdiv%3E'%3Bvar%20ft%3Ddocument.createElement('div')%3Bft.style.cssText%3D'display%3Aflex%3Bflex-wrap%3Awrap%3Bgap%3A4px%3Bmargin-bottom%3A10px%3B'%3BfoundList.slice().sort().forEach(function(k)%7Bvar%20s%3Ddocument.createElement('span')%3Bs.style.cssText%3D'background%3A%231a5c2e%3Bcolor%3A%236fcf97%3Bfont-size%3A11px%3Bpadding%3A2px%207px%3Bborder-radius%3A10px%3B'%3Bs.textContent%3Dk%3Bft.appendChild(s)%3B%7D)%3Bfd.appendChild(ft)%3Bbody.appendChild(fd)%3B%7Dif(missingList.length)%7Bvar%20md%3Ddocument.createElement('div')%3Bmd.innerHTML%3D'%3Cdiv%20style%3D%22font-size%3A11px%3Bfont-weight%3A700%3Bcolor%3A%23eb5757%3Btext-transform%3Auppercase%3Bletter-spacing%3A.06em%3Bmargin-bottom%3A5px%3B%22%3ENot%20found%3C%2Fdiv%3E'%3Bvar%20mt%3Ddocument.createElement('div')%3Bmt.style.cssText%3D'display%3Aflex%3Bflex-wrap%3Awrap%3Bgap%3A4px%3Bmargin-bottom%3A10px%3B'%3BmissingList.slice().sort().forEach(function(k)%7Bvar%20s%3Ddocument.createElement('span')%3Bs.style.cssText%3D'background%3A%233d1a1a%3Bcolor%3A%23eb5757%3Bfont-size%3A11px%3Bpadding%3A2px%207px%3Bborder-radius%3A10px%3B'%3Bs.textContent%3Dk%3Bmt.appendChild(s)%3B%7D)%3Bmd.appendChild(mt)%3Bbody.appendChild(md)%3B%7Dvar%20btns%3Ddocument.createElement('div')%3Bbtns.style.cssText%3D'display%3Aflex%3Bgap%3A6px%3Bpadding-top%3A4px%3B'%3Bvar%20cb%3Ddocument.createElement('button')%3Bcb.textContent%3D'Copy%20found'%3Bcb.style.cssText%3D'flex%3A1%3Bbackground%3A%230f3460%3Bcolor%3A%23FFD700%3Bborder%3Anone%3Bborder-radius%3A6px%3Bpadding%3A6px%208px%3Bfont-size%3A12px%3Bfont-weight%3A600%3Bcursor%3Apointer%3B'%3Bcb.onclick%3Dfunction()%7Bnavigator.clipboard.writeText(foundList.slice().sort().join('%2C%20')).then(function()%7Bcb.textContent%3D'Copied!'%3BsetTimeout(function()%7Bcb.textContent%3D'Copy%20found'%3B%7D%2C1500)%3B%7D)%3B%7D%3Bvar%20xb%3Ddocument.createElement('button')%3Bxb.textContent%3D'Clear'%3Bxb.style.cssText%3D'background%3A%231a0f0f%3Bcolor%3A%23eb5757%3Bborder%3Anone%3Bborder-radius%3A6px%3Bpadding%3A6px%208px%3Bfont-size%3A12px%3Bfont-weight%3A600%3Bcursor%3Apointer%3B'%3Bxb.onclick%3Dfunction()%7Bdocument.querySelectorAll('.'%2BC).forEach(function(e)%7Be.replaceWith(document.createTextNode(e.textContent))%3B%7D)%3Bpanel.remove()%3B%7D%3Bbtns.appendChild(cb)%3Bbtns.appendChild(xb)%3Bbody.appendChild(btns)%3Bheader.onclick%3Dfunction()%7Bvar%20open%3Dbody.style.display%3D%3D%3D'block'%3Bbody.style.display%3Dopen%3F'none'%3A'block'%3Bdocument.getElementById('__kw_tog__').textContent%3Dopen%3F'%2B'%3A'-'%3B%7D%3Bpanel.appendChild(header)%3Bpanel.appendChild(body)%3Bdocument.body.appendChild(panel)%3B%7D)()%3B" onclick="return false;">Highlight TPM Keywords</a>
-      <p class="drag-hint">Drag this button up to your bookmarks bar</p>
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab(0)">Generic TPM</div>
+    <div class="tab" onclick="switchTab(1)">My Profile (Moshe)</div>
+  </div>
+
+  <!-- Profile 0: Generic TPM -->
+  <div class="profile active" id="profile-0">
+    <p class="profile-desc">Broad TPM keyword set - good for any project management role</p>
+    <div class="install-section">
+      <p class="method-label">Option A - drag to bookmarks bar</p>
+      <div class="drag-row">
+        <a class="drag-target" id="drag-0" href="#" onclick="return false;">Highlight TPM Keywords</a>
+        <p class="drag-hint">Drag this button to your bookmarks bar</p>
+      </div>
+      <div class="divider">or create bookmark manually - copy URL below</div>
+      <div class="copy-row">
+        <textarea class="url-box" id="url-0" readonly spellcheck="false"></textarea>
+        <button class="copy-btn" onclick="copyUrl(0)">Copy URL</button>
+      </div>
+    </div>
+    <div class="keywords-section">
+      <h2>Keywords it highlights</h2>
+      <div class="tag-list" id="tags-0"></div>
     </div>
   </div>
 
-  <div class="divider">or</div>
-
-  <!-- Method B -->
-  <div class="method">
-    <p class="method-label">Option B - create bookmark manually</p>
-    <p class="manual-steps">
-      Right-click your bookmarks bar &rarr; <b>Add page / Add bookmark</b><br>
-      Set name: <b>Highlight TPM Keywords</b><br>
-      Set URL: copy from below and paste it
-    </p>
-    <div class="copy-row">
-      <textarea id="urlBox" class="url-box" readonly spellcheck="false"></textarea>
-      <button class="copy-btn" id="copyBtn" onclick="copyUrl()">Copy URL</button>
+  <!-- Profile 1: My Profile -->
+  <div class="profile" id="profile-1">
+    <p class="profile-desc">Tailored to your background: AI/ML pipelines, CI/CD, cloud, simulation, DevOps</p>
+    <div class="install-section">
+      <p class="method-label">Option A - drag to bookmarks bar</p>
+      <div class="drag-row">
+        <a class="drag-target" id="drag-1" href="#" onclick="return false;">Highlight My Keywords</a>
+        <p class="drag-hint">Drag this button to your bookmarks bar</p>
+      </div>
+      <div class="divider">or create bookmark manually - copy URL below</div>
+      <div class="copy-row">
+        <textarea class="url-box" id="url-1" readonly spellcheck="false"></textarea>
+        <button class="copy-btn" onclick="copyUrl(1)">Copy URL</button>
+      </div>
     </div>
-  </div>
-
-  <div class="keywords-section">
-    <h2>Keywords it highlights</h2>
-    <div class="tag-list" id="tagList"></div>
+    <div class="keywords-section">
+      <h2>Keywords it highlights</h2>
+      <div class="tag-list" id="tags-1"></div>
+    </div>
   </div>
 </div>
 
 <script>
-const keywords = [
-  'system design','Azure DevOps','Scrum Master','product owner','cross-functional',
-  'prioritization','coordination','facilitation','negotiation','integration',
-  'escalation','infrastructure','architecture','collaboration','Confluence',
-  'dependency','alignment','deliverable','milestone','technical','leadership',
-  'communication','engineering','mentoring','coaching','planning','strategy',
-  'timeline','backlog','release','velocity','platform','roadmap','budget',
-  'sprint','scope','cloud','risk','vision','PRINCE2','kanban','Asana','Trello',
-  'GitHub','JIRA','agile','scrum','SAFe','lean','OKR','ROI','KPI','PMP','PMI','CSM','API'
+const profiles = [
+  {
+    label: 'Generic TPM',
+    keywords: [
+      'system design','Azure DevOps','Scrum Master','product owner','cross-functional',
+      'prioritization','coordination','facilitation','negotiation','integration',
+      'escalation','infrastructure','architecture','collaboration','Confluence',
+      'dependency','alignment','deliverable','milestone','technical','leadership',
+      'communication','engineering','mentoring','coaching','planning','strategy',
+      'timeline','backlog','release','velocity','platform','roadmap','budget',
+      'sprint','scope','cloud','risk','vision','PRINCE2','kanban','Asana','Trello',
+      'GitHub','JIRA','agile','scrum','SAFe','lean','OKR','ROI','KPI','PMP','PMI','CSM','API'
+    ]
+  },
+  {
+    label: 'My Profile',
+    keywords: [
+      'generative AI','machine learning','LLM','agentic','AI-assisted',
+      'synthetic data','simulation','ML pipeline','data pipeline','autonomous','ADAS',
+      'CI/CD','DevOps','Docker','Jenkins','cloud migration','AWS','cloud-native','Linux',
+      'Git','GitHub','Python','Bitbucket',
+      'end-to-end','PoC to production','release management','acceptance testing',
+      'requirements traceability','cross-functional','stakeholder','technical lead',
+      'team lead','delivery','adoption','enablement','self-service','vendor',
+      'workshop','mentoring','agile','scrum','sprint','milestone','Jira','Confluence',
+      'roadmap','platform'
+    ]
+  }
 ];
 
-// Populate tag list
-const tagList = document.getElementById('tagList');
-keywords.forEach(k => {
-  const tag = document.createElement('span');
-  tag.className = 'tag';
-  tag.textContent = k;
-  tagList.appendChild(tag);
+function buildBookmarklet(kw) {
+  const sorted = JSON.stringify([...kw].sort((a, b) => b.length - a.length));
+  const src = `(function(){var C='__kw_hl__';if(document.querySelector('.'+C)){document.querySelectorAll('.'+C).forEach(function(e){e.replaceWith(document.createTextNode(e.textContent));});var b=document.getElementById('__kw_badge__');if(b)b.remove();return;}var kw=${sorted};var sorted=kw.slice().sort(function(a,b){return b.length-a.length;});var re=new RegExp('('+sorted.map(function(k){return k.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\\\$&');}).join('|')+')','gi');var n=0;var foundSet={};function walk(node){if(node.nodeType===3){var t=node.nodeValue;if(!re.test(t))return;re.lastIndex=0;var f=document.createDocumentFragment(),last=0,m;while((m=re.exec(t))!==null){if(m.index>last)f.appendChild(document.createTextNode(t.slice(last,m.index)));var s=document.createElement('span');s.className=C;s.style.cssText='background:#FFD700;color:#000;border-radius:2px;padding:0 2px;font-weight:600;';s.textContent=m[0];f.appendChild(s);n++;foundSet[m[0].toLowerCase()]=m[0];last=m.index+m[0].length;}if(last<t.length)f.appendChild(document.createTextNode(t.slice(last)));node.parentNode.replaceChild(f,node);}else if(node.nodeType===1&&!/^(SCRIPT|STYLE|TEXTAREA|INPUT|NOSCRIPT)$/.test(node.tagName)){Array.from(node.childNodes).forEach(walk);}}walk(document.body);var foundList=Object.keys(foundSet).map(function(k){return foundSet[k];});var missingList=kw.filter(function(k){return !foundSet[k.toLowerCase()];});var pct=Math.round(foundList.length/kw.length*100);var panel=document.createElement('div');panel.id='__kw_badge__';panel.style.cssText='position:fixed;top:12px;right:12px;z-index:2147483647;background:#1a1a2e;color:#e0e0e0;font:13px/1.4 -apple-system,sans-serif;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.6);border:1px solid #FFD700;min-width:220px;overflow:hidden;';var header=document.createElement('div');header.style.cssText='display:flex;align-items:center;justify-content:space-between;padding:10px 14px;cursor:pointer;background:#0f1e3d;gap:8px;';header.innerHTML='<span style="color:#FFD700;font-weight:700;font-size:15px;">'+pct+'%</span><span style="color:#aaa;font-size:12px;">'+foundList.length+'/'+kw.length+' found</span><span id="__kw_tog__" style="color:#FFD700;font-size:18px;line-height:1;">+</span>';var body=document.createElement('div');body.style.cssText='display:none;padding:10px 14px;max-height:300px;overflow-y:auto;';if(foundList.length){var fd=document.createElement('div');fd.innerHTML='<div style="font-size:11px;font-weight:700;color:#6fcf97;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;">Found</div>';var ft=document.createElement('div');ft.style.cssText='display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;';foundList.slice().sort().forEach(function(k){var s=document.createElement('span');s.style.cssText='background:#1a5c2e;color:#6fcf97;font-size:11px;padding:2px 7px;border-radius:10px;';s.textContent=k;ft.appendChild(s);});fd.appendChild(ft);body.appendChild(fd);}if(missingList.length){var md=document.createElement('div');md.innerHTML='<div style="font-size:11px;font-weight:700;color:#eb5757;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;">Not found</div>';var mt=document.createElement('div');mt.style.cssText='display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;';missingList.slice().sort().forEach(function(k){var s=document.createElement('span');s.style.cssText='background:#3d1a1a;color:#eb5757;font-size:11px;padding:2px 7px;border-radius:10px;';s.textContent=k;mt.appendChild(s);});md.appendChild(mt);body.appendChild(md);}var btns=document.createElement('div');btns.style.cssText='display:flex;gap:6px;padding-top:4px;';var cb=document.createElement('button');cb.textContent='Copy found';cb.style.cssText='flex:1;background:#0f3460;color:#FFD700;border:none;border-radius:6px;padding:6px 8px;font-size:12px;font-weight:600;cursor:pointer;';cb.onclick=function(){navigator.clipboard.writeText(foundList.slice().sort().join(', ')).then(function(){cb.textContent='Copied!';setTimeout(function(){cb.textContent='Copy found';},1500);});};var xb=document.createElement('button');xb.textContent='Clear';xb.style.cssText='background:#1a0f0f;color:#eb5757;border:none;border-radius:6px;padding:6px 8px;font-size:12px;font-weight:600;cursor:pointer;';xb.onclick=function(){document.querySelectorAll('.'+C).forEach(function(e){e.replaceWith(document.createTextNode(e.textContent));});panel.remove();};btns.appendChild(cb);btns.appendChild(xb);body.appendChild(btns);header.onclick=function(){var open=body.style.display==='block';body.style.display=open?'none':'block';document.getElementById('__kw_tog__').textContent=open?'+':'-';};panel.appendChild(header);panel.appendChild(body);document.body.appendChild(panel);})();`;
+  return 'javascript:' + encodeURIComponent(src);
+}
+
+// Init both profiles
+profiles.forEach((p, i) => {
+  const url = buildBookmarklet(p.keywords);
+  document.getElementById('drag-' + i).href = url;
+  document.getElementById('url-' + i).value = url;
+  const tagList = document.getElementById('tags-' + i);
+  p.keywords.forEach(k => {
+    const tag = document.createElement('span');
+    tag.className = 'tag';
+    tag.textContent = k;
+    tagList.appendChild(tag);
+  });
 });
 
-// Populate URL box with the bookmarklet href from the drag link
-const bookmarkletUrl = document.querySelector('.drag-target').getAttribute('href');
-document.getElementById('urlBox').value = bookmarkletUrl;
+function switchTab(idx) {
+  document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', i === idx));
+  document.querySelectorAll('.profile').forEach((p, i) => p.classList.toggle('active', i === idx));
+}
 
-function copyUrl() {
-  const box = document.getElementById('urlBox');
+function copyUrl(idx) {
+  const box = document.getElementById('url-' + idx);
   box.select();
   document.execCommand('copy');
-  const btn = document.getElementById('copyBtn');
+  const btn = box.parentElement.querySelector('.copy-btn');
   btn.textContent = 'Copied!';
   btn.classList.add('ok');
   setTimeout(() => { btn.textContent = 'Copy URL'; btn.classList.remove('ok'); }, 2000);
