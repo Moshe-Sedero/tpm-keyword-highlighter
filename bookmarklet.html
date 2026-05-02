@@ -21,35 +21,19 @@
     border: 1px solid #0f3460;
     border-radius: 16px;
     padding: 36px 44px;
-    max-width: 620px;
+    max-width: 580px;
     width: 100%;
     box-shadow: 0 8px 32px rgba(0,0,0,.4);
   }
   h1 { font-size: 22px; font-weight: 700; color: #FFD700; margin-bottom: 6px; }
   .subtitle { font-size: 14px; color: #888; margin-bottom: 28px; }
 
-  /* Tabs */
-  .tabs { display: flex; margin-bottom: 24px; border-radius: 10px; overflow: hidden; border: 1px solid #0f3460; }
-  .tab {
-    flex: 1; padding: 10px 16px; text-align: center; cursor: pointer;
-    font-size: 13px; font-weight: 600; color: #666;
-    background: #0d1b38; border: none; user-select: none; transition: all .15s;
-  }
-  .tab:first-child { border-right: 1px solid #0f3460; }
-  .tab.active { background: #0f3460; color: #FFD700; }
-  .tab:hover:not(.active) { color: #aaa; background: #111d36; }
-
-  .profile { display: none; }
-  .profile.active { display: block; }
-  .profile-desc { font-size: 13px; color: #666; margin-bottom: 20px; font-style: italic; }
-
-  /* Install steps */
   .steps {
     background: #0d1b38;
     border: 1px solid #0f3460;
     border-radius: 10px;
     padding: 18px 20px;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     counter-reset: step;
   }
   .step {
@@ -86,8 +70,7 @@
   .copy-btn:hover { background: #FFA500; }
   .copy-btn.ok { background: #6fcf97; color: #1a1a2e; }
 
-  /* Keywords */
-  .keywords-section { border-top: 1px solid #0f3460; padding-top: 20px; margin-top: 4px; }
+  .keywords-section { border-top: 1px solid #0f3460; padding-top: 20px; }
   .keywords-section h2 {
     font-size: 11px; font-weight: 700; color: #555;
     text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px;
@@ -101,75 +84,34 @@
   <h1>TPM Keyword Highlighter</h1>
   <p class="subtitle">Highlights keywords on any job posting and shows your match score</p>
 
-  <div class="tabs">
-    <div class="tab active" onclick="switchTab(0)">Generic TPM</div>
-    <div class="tab" onclick="switchTab(1)">My Profile (Moshe)</div>
-  </div>
-
-  <div class="profile active" id="profile-0">
-    <p class="profile-desc">Broad TPM keyword set - good for any project management role</p>
-    <div class="steps">
-      <div class="step">Copy the URL below</div>
-      <div class="step">Right-click your bookmarks bar &rarr; <b>Add bookmark / Add page</b></div>
-      <div class="step">Set name: <b>Highlight TPM Keywords</b> &mdash; paste the URL &rarr; Save</div>
-      <div class="step">Go to any job posting and click the bookmark</div>
-      <div class="copy-row">
-        <textarea class="url-box" id="url-0" readonly spellcheck="false"></textarea>
-        <button class="copy-btn" id="btn-0" onclick="copyUrl(0)">Copy URL</button>
-      </div>
-    </div>
-    <div class="keywords-section">
-      <h2>Keywords it highlights</h2>
-      <div class="tag-list" id="tags-0"></div>
+  <div class="steps">
+    <div class="step">Copy the URL below</div>
+    <div class="step">Right-click your bookmarks bar &rarr; <b>Add bookmark / Add page</b></div>
+    <div class="step">Set name: <b>Highlight My Keywords</b> &mdash; paste the URL &rarr; Save</div>
+    <div class="step">Go to any job posting and click the bookmark</div>
+    <div class="copy-row">
+      <textarea class="url-box" id="urlBox" readonly spellcheck="false"></textarea>
+      <button class="copy-btn" id="copyBtn" onclick="copyUrl()">Copy URL</button>
     </div>
   </div>
 
-  <div class="profile" id="profile-1">
-    <p class="profile-desc">Tailored to your background: AI/ML pipelines, CI/CD, cloud, simulation, DevOps</p>
-    <div class="steps">
-      <div class="step">Copy the URL below</div>
-      <div class="step">Right-click your bookmarks bar &rarr; <b>Add bookmark / Add page</b></div>
-      <div class="step">Set name: <b>Highlight My Keywords</b> &mdash; paste the URL &rarr; Save</div>
-      <div class="step">Go to any job posting and click the bookmark</div>
-      <div class="copy-row">
-        <textarea class="url-box" id="url-1" readonly spellcheck="false"></textarea>
-        <button class="copy-btn" id="btn-1" onclick="copyUrl(1)">Copy URL</button>
-      </div>
-    </div>
-    <div class="keywords-section">
-      <h2>Keywords it highlights</h2>
-      <div class="tag-list" id="tags-1"></div>
-    </div>
+  <div class="keywords-section">
+    <h2>Keywords it highlights</h2>
+    <div class="tag-list" id="tagList"></div>
   </div>
 </div>
 
 <script>
-const profiles = [
-  {
-    keywords: [
-      'system design','Azure DevOps','Scrum Master','product owner','cross-functional',
-      'prioritization','coordination','facilitation','negotiation','integration',
-      'escalation','infrastructure','architecture','collaboration','Confluence',
-      'dependency','alignment','deliverable','milestone','technical','leadership',
-      'communication','engineering','mentoring','coaching','planning','strategy',
-      'timeline','backlog','release','velocity','platform','roadmap','budget',
-      'sprint','scope','cloud','risk','vision','PRINCE2','kanban','Asana','Trello',
-      'GitHub','JIRA','agile','scrum','SAFe','lean','OKR','ROI','KPI','PMP','PMI','CSM','API'
-    ]
-  },
-  {
-    keywords: [
-      'generative AI','machine learning','LLM','agentic','AI-assisted',
-      'synthetic data','simulation','ML pipeline','data pipeline','autonomous','ADAS',
-      'CI/CD','DevOps','Docker','Jenkins','cloud migration','AWS','cloud-native','Linux',
-      'Git','GitHub','Python','Bitbucket',
-      'end-to-end','PoC to production','release management','acceptance testing',
-      'requirements traceability','cross-functional','stakeholder','technical lead',
-      'team lead','delivery','adoption','enablement','self-service','vendor',
-      'workshop','mentoring','agile','scrum','sprint','milestone','Jira','Confluence',
-      'roadmap','platform'
-    ]
-  }
+const keywords = [
+  'generative AI','machine learning','LLM','agentic','AI-assisted',
+  'synthetic data','simulation','ML pipeline','data pipeline','autonomous','ADAS',
+  'CI/CD','DevOps','Docker','Jenkins','cloud migration','AWS','cloud-native','Linux',
+  'Git','GitHub','Python','Bitbucket',
+  'end-to-end','PoC to production','release management','acceptance testing',
+  'requirements traceability','cross-functional','stakeholder','technical lead',
+  'team lead','delivery','adoption','enablement','self-service','vendor',
+  'workshop','mentoring','agile','scrum','sprint','milestone','Jira','Confluence',
+  'roadmap','platform'
 ];
 
 function buildBookmarklet(kw) {
@@ -178,27 +120,20 @@ function buildBookmarklet(kw) {
   return 'javascript:' + encodeURIComponent(src);
 }
 
-profiles.forEach((p, i) => {
-  document.getElementById('url-' + i).value = buildBookmarklet(p.keywords);
-  const tagList = document.getElementById('tags-' + i);
-  p.keywords.forEach(k => {
-    const tag = document.createElement('span');
-    tag.className = 'tag';
-    tag.textContent = k;
-    tagList.appendChild(tag);
-  });
+document.getElementById('urlBox').value = buildBookmarklet(keywords);
+
+keywords.forEach(k => {
+  const tag = document.createElement('span');
+  tag.className = 'tag';
+  tag.textContent = k;
+  document.getElementById('tagList').appendChild(tag);
 });
 
-function switchTab(idx) {
-  document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', i === idx));
-  document.querySelectorAll('.profile').forEach((p, i) => p.classList.toggle('active', i === idx));
-}
-
-function copyUrl(idx) {
-  const box = document.getElementById('url-' + idx);
+function copyUrl() {
+  const box = document.getElementById('urlBox');
   box.select();
   document.execCommand('copy');
-  const btn = document.getElementById('btn-' + idx);
+  const btn = document.getElementById('copyBtn');
   btn.textContent = 'Copied!';
   btn.classList.add('ok');
   setTimeout(() => { btn.textContent = 'Copy URL'; btn.classList.remove('ok'); }, 2000);
