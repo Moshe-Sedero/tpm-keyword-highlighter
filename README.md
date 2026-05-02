@@ -2,24 +2,35 @@
 
 A browser bookmarklet that highlights Technical Project Manager keywords on any job posting - one click, no extensions needed.
 
-## Install
+## Install (one-time setup)
 
 1. Open `bookmarklet.html` in your browser
-2. Drag the gold button to your bookmarks bar (or use Option B to copy the URL and create a bookmark manually)
+2. Click **Copy URL**
+3. Right-click your bookmarks bar and choose **Add favorite**
+4. Set the name (e.g. `Highlight My Keywords`), clear the URL field, paste, and save
 
 ## Use
 
 1. Browse to any job posting (LinkedIn, Greenhouse, Lever, etc.)
-2. Click the **Highlight TPM Keywords** bookmark
-3. Keywords light up in yellow instantly
-4. A panel appears top-right showing your **match score (%)**, keywords found vs not found
-5. Click **Copy found** to copy matched keywords to clipboard (handy for tailoring your CV)
-6. Click **Clear** or the bookmark again to remove highlights
+2. Click the **Highlight My Keywords** bookmark in your bar
+3. Keywords highlight in yellow instantly
+4. A panel appears top-right showing:
+   - **Match score** (% of keywords found)
+   - **Found** - green tags for every matched keyword
+   - **Not found** - red tags for missing keywords
+   - **Copy found** - copies matched keywords to clipboard for CV tailoring
+5. Click **Clear** or the bookmark again to remove highlights
 
-## Keywords covered
+## Keywords
 
-Agile/Scrum methodology, project management terms (roadmap, milestone, sprint, backlog), technical skills (architecture, cloud, API), tools (JIRA, Confluence, Azure DevOps), certifications (PMP, CSM, PRINCE2), and soft skills (stakeholder, cross-functional, leadership).
+Tailored to a technical TPM profile with AI/ML, cloud, and DevOps background:
+
+- **AI/ML:** generative AI, LLM, agentic, machine learning, synthetic data, ML pipeline, data pipeline, simulation
+- **Cloud/DevOps:** CI/CD, DevOps, Docker, Jenkins, AWS, cloud migration, cloud-native, Linux
+- **Tools:** Git, GitHub, Python, Jira, Confluence, Bitbucket
+- **Domain:** autonomous, ADAS, end-to-end, PoC to production, release management, acceptance testing
+- **PM/Leadership:** cross-functional, stakeholder, technical lead, team lead, roadmap, milestone, sprint, delivery, adoption, enablement
 
 ## Customize
 
-To change the keyword list, open `bookmarklet.html` in a text editor, update the `keywords` array in the `<script>` block at the bottom, then re-install the bookmark using Option B (copy URL).
+To change the keyword list, update the JavaScript source in `bookmarklet.html`, re-encode it (use the PowerShell snippet in the repo), and reinstall the bookmark using the steps above.
