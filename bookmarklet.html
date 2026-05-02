@@ -56,21 +56,38 @@
   }
   .step b { color: #e0e0e0; }
 
-  .copy-row { display: flex; gap: 8px; margin-top: 8px; }
+  .url-wrap { margin-top: 16px; }
   .url-box {
-    flex: 1; background: #111d36; border: 1px solid #1a4a8a;
-    border-radius: 6px; color: #aac4ff; font-family: monospace;
-    font-size: 11px; padding: 8px 10px; resize: none; height: 52px; outline: none;
+    display: block;
+    width: 100%;
+    background: #111d36;
+    border: 1px solid #1a4a8a;
+    border-radius: 6px 6px 0 0;
+    color: #aac4ff;
+    font-family: monospace;
+    font-size: 11px;
+    padding: 10px 12px;
+    resize: none;
+    height: 60px;
+    outline: none;
+    word-break: break-all;
   }
   .copy-btn {
-    background: #FFD700; color: #1a1a2e; border: none;
-    border-radius: 6px; font-size: 13px; font-weight: 700;
-    padding: 0 18px; cursor: pointer; white-space: nowrap; flex-shrink: 0;
+    display: block;
+    width: 100%;
+    background: #FFD700;
+    color: #1a1a2e;
+    border: none;
+    border-radius: 0 0 6px 6px;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px;
+    cursor: pointer;
   }
   .copy-btn:hover { background: #FFA500; }
-  .copy-btn.ok { background: #6fcf97; color: #1a1a2e; }
+  .copy-btn.ok { background: #6fcf97; }
 
-  .keywords-section { border-top: 1px solid #0f3460; padding-top: 20px; }
+  .keywords-section { border-top: 1px solid #0f3460; padding-top: 20px; margin-top: 20px; }
   .keywords-section h2 {
     font-size: 11px; font-weight: 700; color: #555;
     text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px;
@@ -85,50 +102,25 @@
   <p class="subtitle">Highlights keywords on any job posting and shows your match score</p>
 
   <div class="steps">
-    <div class="step">Copy the URL below</div>
-    <div class="step">Right-click your bookmarks bar &rarr; <b>Add bookmark / Add page</b></div>
-    <div class="step">Set name: <b>Highlight My Keywords</b> &mdash; paste the URL &rarr; Save</div>
-    <div class="step">Go to any job posting and click the bookmark</div>
-    <div class="copy-row">
-      <textarea class="url-box" id="urlBox" readonly spellcheck="false"></textarea>
+    <div class="step">Click <b>Copy URL</b> below</div>
+    <div class="step">Right-click your bookmarks bar &rarr; <b>Add favorite</b></div>
+    <div class="step">Name: <b>Highlight My Keywords</b> &mdash; clear the URL field, paste, click <b>Save</b></div>
+    <div class="step">Go to any job posting and click the bookmark &mdash; done</div>
+    <div class="url-wrap">
+      <textarea class="url-box" id="urlBox" readonly spellcheck="false">javascript:(function()%7Bvar%20C%3D'__kw_hl__'%3Bif(document.querySelector('.'%2BC))%7Bdocument.querySelectorAll('.'%2BC).forEach(function(e)%7Be.replaceWith(document.createTextNode(e.textContent))%3B%7D)%3Bvar%20b%3Ddocument.getElementById('__kw_badge__')%3Bif(b)b.remove()%3Breturn%3B%7Dvar%20kw%3D%5B%22requirements%20traceability%22%2C%22PoC%20to%20production%22%2C%22cloud%20migration%22%2C%22acceptance%20testing%22%2C%22release%20management%22%2C%22generative%20AI%22%2C%22machine%20learning%22%2C%22data%20pipeline%22%2C%22ML%20pipeline%22%2C%22AI-assisted%22%2C%22cloud-native%22%2C%22self-service%22%2C%22technical%20lead%22%2C%22cross-functional%22%2C%22autonomous%22%2C%22simulation%22%2C%22Confluence%22%2C%22enablement%22%2C%22Bitbucket%22%2C%22stakeholder%22%2C%22milestone%22%2C%22mentoring%22%2C%22platform%22%2C%22delivery%22%2C%22workshop%22%2C%22roadmap%22%2C%22Jenkins%22%2C%22agentic%22%2C%22Docker%22%2C%22DevOps%22%2C%22GitHub%22%2C%22Python%22%2C%22sprint%22%2C%22CI%2FCD%22%2C%22ADAS%22%2C%22Linux%22%2C%22scrum%22%2C%22agile%22%2C%22Jira%22%2C%22team%20lead%22%2C%22adoption%22%2C%22vendor%22%2C%22AWS%22%2C%22Git%22%2C%22LLM%22%2C%22end-to-end%22%2C%22synthetic%20data%22%5D%3Bvar%20re%3Dnew%20RegExp('('%2Bkw.map(function(k)%7Breturn%20k.replace(%2F%5B.*%2B%3F%5E%24%7B%7D()%7C%5B%5C%5D%5C%5C%5D%2Fg%2C'%5C%5C%24%26')%3B%7D).join('%7C')%2B')'%2C'gi')%3Bvar%20n%3D0%3Bvar%20foundSet%3D%7B%7D%3Bfunction%20walk(node)%7Bif(node.nodeType%3D%3D%3D3)%7Bvar%20t%3Dnode.nodeValue%3Bif(!re.test(t))return%3Bre.lastIndex%3D0%3Bvar%20f%3Ddocument.createDocumentFragment()%2Clast%3D0%2Cm%3Bwhile((m%3Dre.exec(t))!%3D%3Dnull)%7Bif(m.index%3Elast)f.appendChild(document.createTextNode(t.slice(last%2Cm.index)))%3Bvar%20s%3Ddocument.createElement('span')%3Bs.className%3DC%3Bs.style.cssText%3D'background%3A%23FFD700%3Bcolor%3A%23000%3Bborder-radius%3A2px%3Bpadding%3A0%202px%3Bfont-weight%3A600%3B'%3Bs.textContent%3Dm%5B0%5D%3Bf.appendChild(s)%3Bn%2B%2B%3BfoundSet%5Bm%5B0%5D.toLowerCase()%5D%3Dm%5B0%5D%3Blast%3Dm.index%2Bm%5B0%5D.length%3B%7Dif(last%3Ct.length)f.appendChild(document.createTextNode(t.slice(last)))%3Bnode.parentNode.replaceChild(f%2Cnode)%3B%7Delse%20if(node.nodeType%3D%3D%3D1%26%26!%2F%5E(SCRIPT%7CSTYLE%7CTEXTAREA%7CINPUT%7CNOSCRIPT)%24%2F.test(node.tagName))%7BArray.from(node.childNodes).forEach(walk)%3B%7D%7Dwalk(document.body)%3Bvar%20foundList%3DObject.keys(foundSet).map(function(k)%7Breturn%20foundSet%5Bk%5D%3B%7D)%3Bvar%20missingList%3Dkw.filter(function(k)%7Breturn%20!foundSet%5Bk.toLowerCase()%5D%3B%7D)%3Bvar%20pct%3DMath.round(foundList.length%2Fkw.length*100)%3Bvar%20panel%3Ddocument.createElement('div')%3Bpanel.id%3D'__kw_badge__'%3Bpanel.style.cssText%3D'position%3Afixed%3Btop%3A12px%3Bright%3A12px%3Bz-index%3A2147483647%3Bbackground%3A%231a1a2e%3Bcolor%3A%23e0e0e0%3Bfont%3A13px%2F1.4%20-apple-system%2Csans-serif%3Bborder-radius%3A12px%3Bbox-shadow%3A0%204px%2020px%20rgba(0%2C0%2C0%2C.6)%3Bborder%3A1px%20solid%20%23FFD700%3Bmin-width%3A220px%3Boverflow%3Ahidden%3B'%3Bvar%20header%3Ddocument.createElement('div')%3Bheader.style.cssText%3D'display%3Aflex%3Balign-items%3Acenter%3Bjustify-content%3Aspace-between%3Bpadding%3A10px%2014px%3Bcursor%3Apointer%3Bbackground%3A%230f1e3d%3Bgap%3A8px%3B'%3Bheader.innerHTML%3D'%3Cspan%20style%3D%22color%3A%23FFD700%3Bfont-weight%3A700%3Bfont-size%3A15px%3B%22%3E'%2Bpct%2B'%25%3C%2Fspan%3E%3Cspan%20style%3D%22color%3A%23aaa%3Bfont-size%3A12px%3B%22%3E'%2BfoundList.length%2B'%2F'%2Bkw.length%2B'%20found%3C%2Fspan%3E%3Cspan%20id%3D%22__kw_tog__%22%20style%3D%22color%3A%23FFD700%3Bfont-size%3A18px%3Bline-height%3A1%3B%22%3E%2B%3C%2Fspan%3E'%3Bvar%20body%3Ddocument.createElement('div')%3Bbody.style.cssText%3D'display%3Anone%3Bpadding%3A10px%2014px%3Bmax-height%3A300px%3Boverflow-y%3Aauto%3B'%3Bif(foundList.length)%7Bvar%20fd%3Ddocument.createElement('div')%3Bfd.innerHTML%3D'%3Cdiv%20style%3D%22font-size%3A11px%3Bfont-weight%3A700%3Bcolor%3A%236fcf97%3Btext-transform%3Auppercase%3Bletter-spacing%3A.06em%3Bmargin-bottom%3A5px%3B%22%3EFound%3C%2Fdiv%3E'%3Bvar%20ft%3Ddocument.createElement('div')%3Bft.style.cssText%3D'display%3Aflex%3Bflex-wrap%3Awrap%3Bgap%3A4px%3Bmargin-bottom%3A10px%3B'%3BfoundList.slice().sort().forEach(function(k)%7Bvar%20s%3Ddocument.createElement('span')%3Bs.style.cssText%3D'background%3A%231a5c2e%3Bcolor%3A%236fcf97%3Bfont-size%3A11px%3Bpadding%3A2px%207px%3Bborder-radius%3A10px%3B'%3Bs.textContent%3Dk%3Bft.appendChild(s)%3B%7D)%3Bfd.appendChild(ft)%3Bbody.appendChild(fd)%3B%7Dif(missingList.length)%7Bvar%20md%3Ddocument.createElement('div')%3Bmd.innerHTML%3D'%3Cdiv%20style%3D%22font-size%3A11px%3Bfont-weight%3A700%3Bcolor%3A%23eb5757%3Btext-transform%3Auppercase%3Bletter-spacing%3A.06em%3Bmargin-bottom%3A5px%3B%22%3ENot%20found%3C%2Fdiv%3E'%3Bvar%20mt%3Ddocument.createElement('div')%3Bmt.style.cssText%3D'display%3Aflex%3Bflex-wrap%3Awrap%3Bgap%3A4px%3Bmargin-bottom%3A10px%3B'%3BmissingList.slice().sort().forEach(function(k)%7Bvar%20s%3Ddocument.createElement('span')%3Bs.style.cssText%3D'background%3A%233d1a1a%3Bcolor%3A%23eb5757%3Bfont-size%3A11px%3Bpadding%3A2px%207px%3Bborder-radius%3A10px%3B'%3Bs.textContent%3Dk%3Bmt.appendChild(s)%3B%7D)%3Bmd.appendChild(mt)%3Bbody.appendChild(md)%3B%7Dvar%20btns%3Ddocument.createElement('div')%3Bbtns.style.cssText%3D'display%3Aflex%3Bgap%3A6px%3Bpadding-top%3A4px%3B'%3Bvar%20cb%3Ddocument.createElement('button')%3Bcb.textContent%3D'Copy%20found'%3Bcb.style.cssText%3D'flex%3A1%3Bbackground%3A%230f3460%3Bcolor%3A%23FFD700%3Bborder%3Anone%3Bborder-radius%3A6px%3Bpadding%3A6px%208px%3Bfont-size%3A12px%3Bfont-weight%3A600%3Bcursor%3Apointer%3B'%3Bcb.onclick%3Dfunction()%7Bnavigator.clipboard.writeText(foundList.slice().sort().join('%2C%20')).then(function()%7Bcb.textContent%3D'Copied!'%3BsetTimeout(function()%7Bcb.textContent%3D'Copy%20found'%3B%7D%2C1500)%3B%7D)%3B%7D%3Bvar%20xb%3Ddocument.createElement('button')%3Bxb.textContent%3D'Clear'%3Bxb.style.cssText%3D'background%3A%231a0f0f%3Bcolor%3A%23eb5757%3Bborder%3Anone%3Bborder-radius%3A6px%3Bpadding%3A6px%208px%3Bfont-size%3A12px%3Bfont-weight%3A600%3Bcursor%3Apointer%3B'%3Bxb.onclick%3Dfunction()%7Bdocument.querySelectorAll('.'%2BC).forEach(function(e)%7Be.replaceWith(document.createTextNode(e.textContent))%3B%7D)%3Bpanel.remove()%3B%7D%3Bbtns.appendChild(cb)%3Bbtns.appendChild(xb)%3Bbody.appendChild(btns)%3Bheader.onclick%3Dfunction()%7Bvar%20open%3Dbody.style.display%3D%3D%3D'block'%3Bbody.style.display%3Dopen%3F'none'%3A'block'%3Bdocument.getElementById('__kw_tog__').textContent%3Dopen%3F'%2B'%3A'-'%3B%7D%3Bpanel.appendChild(header)%3Bpanel.appendChild(body)%3Bdocument.body.appendChild(panel)%3B%7D)()%3B</textarea>
       <button class="copy-btn" id="copyBtn" onclick="copyUrl()">Copy URL</button>
     </div>
   </div>
 
   <div class="keywords-section">
     <h2>Keywords it highlights</h2>
-    <div class="tag-list" id="tagList"></div>
+    <div class="tag-list">
+      <span class="tag">generative AI</span><span class="tag">machine learning</span><span class="tag">LLM</span><span class="tag">agentic</span><span class="tag">AI-assisted</span><span class="tag">synthetic data</span><span class="tag">simulation</span><span class="tag">ML pipeline</span><span class="tag">data pipeline</span><span class="tag">autonomous</span><span class="tag">ADAS</span><span class="tag">CI/CD</span><span class="tag">DevOps</span><span class="tag">Docker</span><span class="tag">Jenkins</span><span class="tag">cloud migration</span><span class="tag">AWS</span><span class="tag">cloud-native</span><span class="tag">Linux</span><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Python</span><span class="tag">Bitbucket</span><span class="tag">end-to-end</span><span class="tag">PoC to production</span><span class="tag">release management</span><span class="tag">acceptance testing</span><span class="tag">requirements traceability</span><span class="tag">cross-functional</span><span class="tag">stakeholder</span><span class="tag">technical lead</span><span class="tag">team lead</span><span class="tag">delivery</span><span class="tag">adoption</span><span class="tag">enablement</span><span class="tag">self-service</span><span class="tag">vendor</span><span class="tag">workshop</span><span class="tag">mentoring</span><span class="tag">agile</span><span class="tag">scrum</span><span class="tag">sprint</span><span class="tag">milestone</span><span class="tag">Jira</span><span class="tag">Confluence</span><span class="tag">roadmap</span><span class="tag">platform</span>
+    </div>
   </div>
 </div>
 
 <script>
-const keywords = [
-  'generative AI','machine learning','LLM','agentic','AI-assisted',
-  'synthetic data','simulation','ML pipeline','data pipeline','autonomous','ADAS',
-  'CI/CD','DevOps','Docker','Jenkins','cloud migration','AWS','cloud-native','Linux',
-  'Git','GitHub','Python','Bitbucket',
-  'end-to-end','PoC to production','release management','acceptance testing',
-  'requirements traceability','cross-functional','stakeholder','technical lead',
-  'team lead','delivery','adoption','enablement','self-service','vendor',
-  'workshop','mentoring','agile','scrum','sprint','milestone','Jira','Confluence',
-  'roadmap','platform'
-];
-
-function buildBookmarklet(kw) {
-  const sorted = JSON.stringify([...kw].sort((a, b) => b.length - a.length));
-  const src = `(function(){var C='__kw_hl__';if(document.querySelector('.'+C)){document.querySelectorAll('.'+C).forEach(function(e){e.replaceWith(document.createTextNode(e.textContent));});var b=document.getElementById('__kw_badge__');if(b)b.remove();return;}var kw=${sorted};var sorted=kw.slice().sort(function(a,b){return b.length-a.length;});var re=new RegExp('('+sorted.map(function(k){return k.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\\\$&');}).join('|')+')','gi');var n=0;var foundSet={};function walk(node){if(node.nodeType===3){var t=node.nodeValue;if(!re.test(t))return;re.lastIndex=0;var f=document.createDocumentFragment(),last=0,m;while((m=re.exec(t))!==null){if(m.index>last)f.appendChild(document.createTextNode(t.slice(last,m.index)));var s=document.createElement('span');s.className=C;s.style.cssText='background:#FFD700;color:#000;border-radius:2px;padding:0 2px;font-weight:600;';s.textContent=m[0];f.appendChild(s);n++;foundSet[m[0].toLowerCase()]=m[0];last=m.index+m[0].length;}if(last<t.length)f.appendChild(document.createTextNode(t.slice(last)));node.parentNode.replaceChild(f,node);}else if(node.nodeType===1&&!/^(SCRIPT|STYLE|TEXTAREA|INPUT|NOSCRIPT)$/.test(node.tagName)){Array.from(node.childNodes).forEach(walk);}}walk(document.body);var foundList=Object.keys(foundSet).map(function(k){return foundSet[k];});var missingList=kw.filter(function(k){return !foundSet[k.toLowerCase()];});var pct=Math.round(foundList.length/kw.length*100);var panel=document.createElement('div');panel.id='__kw_badge__';panel.style.cssText='position:fixed;top:12px;right:12px;z-index:2147483647;background:#1a1a2e;color:#e0e0e0;font:13px/1.4 -apple-system,sans-serif;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.6);border:1px solid #FFD700;min-width:220px;overflow:hidden;';var header=document.createElement('div');header.style.cssText='display:flex;align-items:center;justify-content:space-between;padding:10px 14px;cursor:pointer;background:#0f1e3d;gap:8px;';header.innerHTML='<span style="color:#FFD700;font-weight:700;font-size:15px;">'+pct+'%<\\/span><span style="color:#aaa;font-size:12px;">'+foundList.length+'\\/'+kw.length+' found<\\/span><span id="__kw_tog__" style="color:#FFD700;font-size:18px;line-height:1;">+<\\/span>';var body=document.createElement('div');body.style.cssText='display:none;padding:10px 14px;max-height:300px;overflow-y:auto;';if(foundList.length){var fd=document.createElement('div');fd.innerHTML='<div style="font-size:11px;font-weight:700;color:#6fcf97;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;">Found<\\/div>';var ft=document.createElement('div');ft.style.cssText='display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;';foundList.slice().sort().forEach(function(k){var s=document.createElement('span');s.style.cssText='background:#1a5c2e;color:#6fcf97;font-size:11px;padding:2px 7px;border-radius:10px;';s.textContent=k;ft.appendChild(s);});fd.appendChild(ft);body.appendChild(fd);}if(missingList.length){var md=document.createElement('div');md.innerHTML='<div style="font-size:11px;font-weight:700;color:#eb5757;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;">Not found<\\/div>';var mt=document.createElement('div');mt.style.cssText='display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;';missingList.slice().sort().forEach(function(k){var s=document.createElement('span');s.style.cssText='background:#3d1a1a;color:#eb5757;font-size:11px;padding:2px 7px;border-radius:10px;';s.textContent=k;mt.appendChild(s);});md.appendChild(mt);body.appendChild(md);}var btns=document.createElement('div');btns.style.cssText='display:flex;gap:6px;padding-top:4px;';var cb=document.createElement('button');cb.textContent='Copy found';cb.style.cssText='flex:1;background:#0f3460;color:#FFD700;border:none;border-radius:6px;padding:6px 8px;font-size:12px;font-weight:600;cursor:pointer;';cb.onclick=function(){navigator.clipboard.writeText(foundList.slice().sort().join(', ')).then(function(){cb.textContent='Copied!';setTimeout(function(){cb.textContent='Copy found';},1500);});};var xb=document.createElement('button');xb.textContent='Clear';xb.style.cssText='background:#1a0f0f;color:#eb5757;border:none;border-radius:6px;padding:6px 8px;font-size:12px;font-weight:600;cursor:pointer;';xb.onclick=function(){document.querySelectorAll('.'+C).forEach(function(e){e.replaceWith(document.createTextNode(e.textContent));});panel.remove();};btns.appendChild(cb);btns.appendChild(xb);body.appendChild(btns);header.onclick=function(){var open=body.style.display==='block';body.style.display=open?'none':'block';document.getElementById('__kw_tog__').textContent=open?'+':'-';};panel.appendChild(header);panel.appendChild(body);document.body.appendChild(panel);})();`;
-  return 'javascript:' + encodeURIComponent(src);
-}
-
-document.getElementById('urlBox').value = buildBookmarklet(keywords);
-
-keywords.forEach(k => {
-  const tag = document.createElement('span');
-  tag.className = 'tag';
-  tag.textContent = k;
-  document.getElementById('tagList').appendChild(tag);
-});
-
 function copyUrl() {
   const box = document.getElementById('urlBox');
   box.select();
