@@ -15,22 +15,26 @@ A browser bookmarklet that highlights keywords on any job posting and shows your
 2. Click the **Highlight My Keywords** bookmark in your bar
 3. Keywords highlight in color instantly
 4. A panel appears top-right showing:
-   - **Match score** (% of keywords found)
+   - **Match score** (% of green + blue keywords found)
    - **Your CV** - green tags for matched CV keywords
    - **Role Keywords** - blue tags for matched role keywords
-   - **Missing** - red tags for keywords not found
-   - **Copy found** - copies all matched keywords to clipboard for CV tailoring
+   - **Negative signals** - red tags for mismatch indicators (shown only if found)
+   - **Missing** - red tags for keywords not found in each list
+   - **Copy found** - copies all matched green + blue keywords to clipboard for CV tailoring
 5. Click **Clear** or the bookmark again to remove highlights
 
 ## Keywords
 
-Two color-coded lists tailored to Moshe's profile and target roles:
+Three color-coded lists:
 
-### Green - Your CV (41 keywords)
-Keywords directly from the CV: CI/CD, Scrum, agile, Jira, Confluence, Jenkins, Docker, Linux, Python, Bash, GitHub, Bitbucket, Git, simulation, synthetic data, ML pipeline, data pipeline, autonomous, ADAS, cloud migration, DevOps, generative AI, LLM, agentic, release management, acceptance testing, requirements traceability, regression testing, end-to-end, PoC to production, cross-functional, stakeholder, sprint, milestone, roadmap, version control, AWS, self-service, enablement, adoption, workshop
+### Green - Your CV (53 keywords)
+Keywords directly from the CV: CI/CD, Scrum, agile, agile methodology, Jira, Confluence, Jenkins, Docker, Linux, Python, Bash, GitHub, Bitbucket, Git, simulation, synthetic data, ML pipeline, data pipeline, autonomous, ADAS, cloud migration, DevOps, generative AI, LLM, agentic, release management, release process, release lifecycle, acceptance testing, UAT, requirements traceability, requirements management, regression testing, end-to-end, end to end, PoC to production, cross-functional, cross functional, stakeholder, stakeholder management, sprint, milestone, roadmap, product roadmap, version control, AWS, self-service, self service, enablement, adoption, workshop, requirements elicitation, scrum master
 
-### Blue - Role Keywords (38 keywords)
-Common keywords for target roles (Senior TPM, Delivery Manager, Release Manager, AI Program Manager, Technical Account Manager, etc.): program management, technical program manager, delivery manager, release manager, AI program manager, technical account manager, customer success, OKR, KPI, metrics, risk management, dependency management, escalation management, capacity planning, resource allocation, executive stakeholder, SAFe, PI planning, change management, process improvement, SLA, incident management, go-to-market, launch readiness, MLOps, AI governance, model deployment, continuous improvement, operational excellence, technical roadmap, RACI, data-driven, onboarding, renewal, QBR, NPS, accountability, program planning
+### Blue - Role Keywords (45 keywords)
+Common signals for target roles (Senior TPM, Delivery Manager, Release Manager, AI Program Manager, Technical Account Manager, etc.): program manager, programme manager, project manager, project lead, technical program manager, delivery manager, release manager, AI program manager, technical account manager, product owner, project lifecycle, release cycle, release lifecycle, cross-functional teams, cross functional teams, R&D teams, engineering teams, global teams, matrix management, matrix environment, escalation, escalation management, dependency management, risk management, risk mitigation, capacity planning, resource allocation, resource planning, executive stakeholder, change management, process improvement, continuous improvement, operational excellence, technical roadmap, definition of done, DoD, vendor management, onboarding, customer onboarding, program planning, programme management, OKR, KPI, go-live, go live
+
+### Red - Negative Signals (47 keywords)
+Indicators that a role is likely a mismatch: junior, associate, intern, student, entry level, sales, account executive, business development, marketing, finance, legal, recruiter, chip, silicon, VLSI, ASIC, FPGA, semiconductor, hardware engineer, mechanical engineer, software engineer, data scientist, data engineer, ML engineer, DevOps engineer, QA engineer, technical support, tier 1, tier 2, help desk, full stack, frontend, backend, React, Node.js, Java, C++, C#, Golang, Rust, TypeScript, REST API development, microservices, hands-on coding, write code, coding skills required, software engineering experience
 
 ## Customize
 
